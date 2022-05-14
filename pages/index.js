@@ -6,6 +6,12 @@ export default function Home() {
 
   useEffect(() => {
     const ctx = canvas.current;
+
+    let chartStatus = Chart.getChart('myChart');
+    if (chartStatus != undefined) {
+      chartStatus.destroy();
+    }
+
     const chart = new Chart(ctx, {
       type: 'pie',
       data: {
@@ -51,7 +57,7 @@ export default function Home() {
 
   return (
     <div className='container'>
-      <canvas ref={canvas}></canvas>
+      <canvas id='myChart' ref={canvas}></canvas>
     </div>
   );
 }
